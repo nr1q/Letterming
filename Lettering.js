@@ -1,3 +1,16 @@
+/* This program is free software. It comes without any warranty, to
+ * the extent permitted by applicable law. You can redistribute it
+ * and/or modify it under the terms of the Do What The Fuck You Want
+ * To Public License, Version 2, as published by Sam Hocevar. See
+ * http://sam.zoy.org/wtfpl/ for more details.
+ */
+
+/**
+ * Lettering 0.1.0
+ *
+ * Inspired on the original Lettering.js jQuery plugin
+ * https://github.com/davatron5000/Lettering.js
+ */
 export default class {
   constructor(element, method) {
     this.element = element
