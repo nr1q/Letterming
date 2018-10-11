@@ -64,8 +64,12 @@ export default class {
       split = text.split(splitter)
     }
 
+    // fix char count on the classname
+    let indexOffset = 1
+
     split.forEach(function(element, index, fragment) {
       if (!splitter && element === '\n') {
+        indexOffset--
         fragment[index] = '<br>'
         return
       }
@@ -80,7 +84,7 @@ export default class {
         }
       }
 
-      fragment[index] = `<span class="${classname+(index+1)}" aria-hidden="true">${element}</span>${joiner}`
+      fragment[index] = `<span class="${classname+(index+indexOffset)}" aria-hidden="true">${element}</span>${joiner}`
     });
 
     this.element.setAttribute('aria-label', text)
