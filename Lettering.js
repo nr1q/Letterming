@@ -87,7 +87,7 @@ export default class {
       fragment[index] = `<span class="${classname+(index+indexOffset)}" aria-hidden="true">${element}</span>${joiner}`
     });
 
-    this.element.setAttribute('aria-label', text)
+    this.element.setAttribute('aria-label', text.replace(re, ' '))
     this.element.innerHTML = split.join('');
   }
 }
