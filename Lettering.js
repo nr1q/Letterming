@@ -14,7 +14,7 @@
 export default class {
   constructor(element, method) {
     this.element = element
-    this.methods = this.setMethods()
+    this.methods = this.splitMethods()
 
     if (method && this.methods[method]) {
       this.methods[method]()
@@ -25,13 +25,13 @@ export default class {
     }
   }
 
-  setMethods() {
+  splitMethods() {
     return {
       init: () => {
         return this.inject('char', '')
       },
       words: () => {
-        return this.inject('word', ' ')
+        return this.inject('word', /\s/g)
       },
       lines: () => {
         return this.inject('line', /\n/g)
@@ -40,31 +40,50 @@ export default class {
   }
 
   inject(classname, splitter) {
-    let split
-    let text = this.element.textContent.trim()
+    // base64 of string 'newLineMark' used
+    // to avoid losing `<br>` tags inside `element`
+    const nl = 'bmV3TGluZU1hcmsK'
+    const re = new RegExp(nl, 'g')
 
-    if (splitter instanceof RegExp) {
-      text = text.replace(/\s*\n\s*/g, "\n")
-      split = text.split(splitter)
-      splitter = ' '
-    } else {
-      text = text.replace(/\s+/g, ' ')
-      if (!splitter) {
-        split = [...text]
-      }
-      else {
-        text = text.replace(/\n/g, ' ')
-        split = text.split(splitter)
-      }
+    let text = this.element.textContent
+
+    // fix duplicated spacing chars
+    text = text.trim()
+      .replace(/\ +/g, ' ')
+      .replace(/\s*\n\s*/g, '\n')
+
+    // mark new line positions
+    if (splitter !== '') {
+      text = text.replace(/\n/g, nl + '\n')
     }
 
-    let inject = ''
+    let split = []
+    if (!splitter) {
+      split = [...text]
+    } else {
+      split = text.split(splitter)
+    }
 
     split.forEach(function(element, index, fragment) {
-      fragment[index] = `<span class="${classname+(index+1)}" aria-hidden="true">${element}</span>`
+      if (!splitter && element === '\n') {
+        fragment[index] = '<br>'
+        return
+      }
+
+      let joiner = ''
+      if (splitter) {
+        if (element.indexOf(nl) >= 0) {
+          element = element.replace(nl, '')
+          joiner = '<br>'
+        } else {
+          joiner = ' '
+        }
+      }
+
+      fragment[index] = `<span class="${classname+(index+1)}" aria-hidden="true">${element}</span>${joiner}`
     });
 
     this.element.setAttribute('aria-label', text)
-    this.element.innerHTML = split.join(splitter);
+    this.element.innerHTML = split.join('');
   }
 }
