@@ -78,7 +78,7 @@ export default class {
       if (splitter) {
         if (element.indexOf(nl) >= 0) {
           element = element.replace(nl, '')
-          joiner = '<br>'
+          joiner = '<br> '
         } else {
           joiner = ' '
         }
