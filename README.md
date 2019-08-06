@@ -1,4 +1,4 @@
-# Lettering
+# Letterming
 This library is inspired on [Lettering.js](https://github.com/davatron5000/Lettering.js) and [charming.](https://github.com/yuanqing/charming)
 
 ## Why another library for this purpose?

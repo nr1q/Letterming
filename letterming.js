@@ -6,12 +6,12 @@
  */
 
 /**
- * Lettering 0.1.0
+ * Letterming 0.1.0
  *
  * Inspired on the original Lettering.js jQuery plugin
  * https://github.com/davatron5000/Lettering.js
  */
-export default class {
+export default class Letterming {
   constructor(element, method) {
     this.element = element
     this.methods = this.splitMethods()
@@ -21,7 +21,7 @@ export default class {
     } else if (method === 'letters' || ! method) {
       this.methods.init()
     } else {
-      throw Error('Method ' +  method + ' does not exist on Lettering')
+      throw Error('Method ' +  method + ' does not exist on Letterming')
     }
   }
 

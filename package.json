@@ -1,0 +1,28 @@
+{
+  "name": "letterming",
+  "version": "0.1.0",
+  "author": "Enrique <hein@cherrybomb.com.mx>",
+  "description": "Splits text in lines, words, and characters by wrapping it in <span> elements.",
+  "license": "WTFPL",
+  "main": "letterming.js",
+  "keywords": [
+    "charming",
+    "dom",
+    "es6",
+    "javascript",
+    "kerning",
+    "lettering",
+    "typography"
+  ],
+  "homepage": "https://github.com/nr1q/Letterming#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nr1q/Letterming.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nr1q/Letterming/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
