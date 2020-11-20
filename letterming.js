@@ -60,6 +60,7 @@ export default class Letterming {
     let split = []
     if (!splitter) {
       split = [...text]
+      split = split.map(c => c === ' ' ? '&nbsp;' : c);
     } else {
       split = text.split(splitter)
     }
